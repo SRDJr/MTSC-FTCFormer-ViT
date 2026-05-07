@@ -1,0 +1,25 @@
+# Python environments
+venv/
+env/
+ftcformer_env/
+__pycache__/
+*.pyc
+
+# Data (NEVER push your datasets to GitHub!)
+data/raw/
+data/processed_batch2/
+*.npy
+*.zip
+
+# Model Outputs & Weights
+results/*.pt
+results/*.pth
+*.csv
+
+# IDEs
+.vscode/
+.idea/
+
+# Cloud Storage Temp Files
+.tmp.driveupload/
+.DS_Store
