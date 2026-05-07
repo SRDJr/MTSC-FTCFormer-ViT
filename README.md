@@ -1,4 +1,4 @@
-# FTCFormer: Fuzzy Attention for Multivariate Time-Series Classification
+# Transforming Time-Series to Images: A Fuzzy Attention Approach (via FTCFormer)
 
 This repository contains the official codebase for transforming Multivariate Time-Series Classification (MTSC) tasks into computer vision problems, processed by a highly customized, noise-resilient Vision Transformer (ViT). 
 
@@ -80,14 +80,11 @@ To ensure strict reproducibility, please use the provided dependencies list to c
    cd mtsc-ftcformer
 
 2. **Create and activate a virtual environment:**
-    // Using standard Python venv
-    python -m venv env
+    * Using standard Python venv: python -m venv env
 
-    // Windows Activation:
-    env\Scripts\activate
+    * Windows Activation: env\Scripts\activate
 
-    // macOS/Linux Activation:
-    source env/bin/activate
+    * macOS/Linux Activation: source env/bin/activate
 
 3. **Install exact dependencies:**
     pip install -r requirements.txt
@@ -100,6 +97,7 @@ Because the data factory is fully automated, you do **not** need to manually dow
 1. Simply run the data factory pipeline:
    ```bash
    python generate_data.py
+   ```
 
 2. What this script does automatically:
 
@@ -125,6 +123,7 @@ The entire architecture is highly modular and controlled via the `configs/config
 Once your desired configuration is set, execute the master training loop across all configured datasets and variants:
 ```bash
 python train_fuzzy.py
+```
 
 
 ## 5. Results & Interpretability
@@ -141,3 +140,14 @@ At the end of a successful training run (when `USE_FUZZY = True`), the script au
 3. **Output Generation:** These raw weights are saved locally to `results/final_memberships.pt`. 
 
 You can load this `.pt` tensor into any standard visualization script to generate attention heatmaps, definitively proving which specific chaotic noise frequencies the network learned to mathematically ignore.
+
+
+## 6. Acknowledgements & References
+
+This work is built upon the foundational **FTCFormer** architecture. While this repository introduces novel modifications for multivariate time-series data (including Adaptive Density Clustering, Learnable Gaussian Attention, and Softmax-Free gating), the core Clustering Token Merging (CTM) concept and original baseline framework belong to the authors of FTCFormer.
+
+If you use this codebase or build upon our fuzzy time-series innovations, please ensure you also cite the original FTCFormer paper:
+
+* **Original FTCFormer Paper:** Muyi Bao, Changyu Zeng, Yifan Wang, Zhengni Yang, Zimu Wang, Guangliang Cheng, Jun Qi, and Wei Wang. *"FTCFormer: Fuzzy Token Clustering Transformer for Image Classification"*, 2025.
+* **Original Repository:** [https://github.com/BaoBao0926/FTCFormer/tree/main](https://github.com/BaoBao0926/FTCFormer/tree/main)
+
