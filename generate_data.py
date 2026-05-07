@@ -95,13 +95,18 @@ if __name__ == "__main__":
         for variant in Config.VARIANTS:
             process_dataset_variant(dataset, variant)
             
-    print("\n[SUCCESS] All datasets and variants processed into 'processed_batch2' folder.")
+    
+    # Dynamically extract the folder name from your config path
+    target_folder = os.path.basename(os.path.normpath(Config.DATA_PATH))
+    print(f"\n[SUCCESS] All datasets and variants processed into '{target_folder}' folder.")
     
     # --- AUTO-ZIP FOR FAST GOOGLE DRIVE SYNC ---
-    print("\n[INFO] Zipping the processed folder for fast Drive sync...")
-    zip_path = os.path.join(Config.BASE_DIR, 'data', 'processed_batch2_archive')
+    print(f"\n[INFO] Zipping the '{target_folder}' folder for fast Drive sync...")
     
-    # This creates a processed_batch2_archive.zip file
+    # Automatically append '_archive' to your exact config path
+    zip_path = f"{Config.DATA_PATH}_archive"
+    
+    # This creates the archive dynamically based on config
     shutil.make_archive(zip_path, 'zip', Config.DATA_PATH)
     
     print(f"[SUCCESS] Zipping complete! File saved as: {zip_path}.zip")
