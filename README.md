@@ -21,7 +21,7 @@ Standard Vision Transformers (and even the baseline FTCFormer) are optimized for
 1. **Fuzzy Self-Attention (Phase 1 & Phase 2):** We replaced standard crisp Multi-Head Attention with a custom `LearnableGaussianAttention` module. Each attention head learns its own target ($\mu$) and strictness ($\sigma$) parameters to aggressively filter out noise inherent in time-series data. 
     * *Phase 1:* FANTF-style normalization using softmax.
     * *Phase 2:* Softmax-free, independent feature gating.
-2. **Adaptive Density Clustering:** Inside the CTM (Clustering Token Merging) downsampling module, we injected a dataset-specific, learnable $\beta$ parameter to mathematically stabilize the clustering of token distances before merging.
+2. **Adaptive Density Clustering:** Inside the CTM (Clustering Token Merging) downsampling module, we injected a dataset-specific, hyperparameter $\beta$ to mathematically stabilize the clustering of token distances before merging.
 3. **Optimized Spatial Processing:** We explicitly bypassed legacy visual components—such as Spatial Reduction (SR) layers and Convolutional Positional Encodings (CPEG)—forcing the network to group tokens strictly by their raw semantic values rather than superficial 2D grid coordinates.
 
 
@@ -54,11 +54,11 @@ mtsc-ftcformer/
 
 **NOTE:** Due to GitHub's file size restrictions, the data/ directory is intentionally excluded from version control.
 
-- **data/raw/ \& data/processed/**: You must manually create this folder and extract the downloaded aeon time-series datasets here.You do not need to create these folders manually. Running the generate_data.py script will automatically generate these folders and populate the *data/raw* folder  with the downloaded aeon time-series datasets and the *data/processed* folder with the 2D image representations.
+- **`data/raw/ \& data/processed/`**: You do not need to create these folders manually. Running the generate_data.py script will automatically generate these folders and populate the `data/raw` folder  with the downloaded aeon time-series datasets and the `data/processed` folder with the 2D image representations.
 
 #### IMPORTANT FILES
 
-* **`configs/config.py` (The Master Switchboard)**: The central control hub of the project. It features automatic environment detection (seamlessly switching paths between Google Colab and local execution) and manages global hyperparameters. Crucially, it houses the **Dataset Registry** (mapping specific channels, classes, and learnable $\beta$ densities to each dataset) and the **Fuzzy Pipeline Controls**. This allows researchers to toggle between the Standard ViT baseline, Phase 1 (FANTF-style), and Phase 2 (Softmax-Free) architectures simply by flipping boolean flags.
+* **`configs/config.py` (The Master Switchboard)**: The central control hub of the project. It features automatic environment detection (seamlessly switching paths between Google Colab and local execution) and manages global hyperparameters. Crucially, it houses the **Dataset Registry** (mapping specific channels, classes, and $\beta$ densities to each dataset) and the **Fuzzy Pipeline Controls**. This allows researchers to toggle between the Standard ViT baseline, Phase 1 (FANTF-style), and Phase 2 (Softmax-Free) architectures simply by flipping boolean flags.
 
 * **`generate_data.py` (The Data Factory)**: Automates the entire pipeline of converting raw 1D time-series signals into 2D spatial image tensors. It fetches datasets via the `aeon` library, applies your specified mathematical transformations (e.g., `Values_x_Values`), and utilizes multi-core parallel processing (`joblib`) to rapidly generate lossless `.npy` files. Finally, it automatically compiles the structured output into a single `.zip` archive, optimizing the massive dataset for fast cloud storage synchronization.
 
@@ -101,11 +101,11 @@ Because the data factory is fully automated, you do **not** need to manually dow
 
 2. What this script does automatically:
 
-* It uses the aeon library to fetch the raw datasets specified in config.py from the internet and saves them to data/raw/.
+* It uses the aeon library to fetch the raw datasets specified in config.py from the internet and saves them to `data/raw/`.
 
 * It mathematical converts the 1D signals into 2D image tensors using your chosen variants.
 
-* It creates the data/processed/ directory and saves the lossless .npy files.
+* It creates the `data/processed/` directory and saves the lossless .npy files.
 
 * Finally, it compresses the entire processed directory into a .zip archive (processed.zip) for easy backup or transfer.
 
@@ -144,7 +144,7 @@ You can load this `.pt` tensor into any standard visualization script to generat
 
 ## 6. Acknowledgements & References
 
-This work is built upon the foundational **FTCFormer** architecture. While this repository introduces novel modifications for multivariate time-series data (including Adaptive Density Clustering, Learnable Gaussian Attention, and Softmax-Free gating), the core Clustering Token Merging (CTM) concept and original baseline framework belong to the authors of FTCFormer.
+This work is built upon the foundational **FTCFormer** architecture. While this repository introduces novel modifications for multivariate time-series data (including Adaptive Density Clustering, Learnable Gaussian Attention, Softmax-Free gating and structural ViT bypasses), the core Clustering Token Merging (CTM) concept and original baseline framework belong to the authors of FTCFormer.
 
 If you use this codebase or build upon our fuzzy time-series innovations, please ensure you also cite the original FTCFormer paper:
 
