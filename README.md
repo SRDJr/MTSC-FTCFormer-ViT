@@ -54,7 +54,7 @@ mtsc-ftcformer/
 
 **NOTE:** Due to GitHub's file size restrictions, the data/ directory is intentionally excluded from version control.
 
-- **`data/raw/ \& data/processed/`**: You do not need to create these folders manually. Running the generate_data.py script will automatically generate these folders and populate the `data/raw` folder  with the downloaded aeon time-series datasets and the `data/processed` folder with the 2D image representations.
+- **`data/raw/ & data/processed/`**: You do not need to create these folders manually. Running the generate_data.py script will automatically generate these folders and populate the `data/raw` folder  with the downloaded aeon time-series datasets and the `data/processed` folder with the 2D image representations.
 
 #### IMPORTANT FILES
 
