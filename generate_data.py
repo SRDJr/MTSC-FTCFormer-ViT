@@ -101,12 +101,13 @@ if __name__ == "__main__":
     print(f"\n[SUCCESS] All datasets and variants processed into '{target_folder}' folder.")
     
     # --- AUTO-ZIP FOR FAST GOOGLE DRIVE SYNC ---
-    print(f"\n[INFO] Zipping the '{target_folder}' folder for fast Drive sync...")
+    # To be uncommented if one wants to store the zip files for the data/processed
+    # print(f"\n[INFO] Zipping the '{target_folder}' folder for fast Drive sync...")
     
-    # Automatically append '_archive' to your exact config path
-    zip_path = f"{Config.DATA_PATH}_archive"
+    # # Automatically append '_archive' to your exact config path
+    # zip_path = f"{Config.DATA_PATH}_archive"
     
-    # This creates the archive dynamically based on config
-    shutil.make_archive(zip_path, 'zip', Config.DATA_PATH)
+    # # This creates the archive dynamically based on config
+    # shutil.make_archive(zip_path, 'zip', Config.DATA_PATH)
     
-    print(f"[SUCCESS] Zipping complete! File saved as: {zip_path}.zip")
+    # print(f"[SUCCESS] Zipping complete! File saved as: {zip_path}.zip")
