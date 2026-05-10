@@ -52,7 +52,7 @@ mtsc-ftcformer/
 └── train.py                     # Legacy/Baseline training loop
 ```
 
-**NOTE:** Due to GitHub's file size restrictions, the data/ directory is intentionally excluded from version control.
+***NOTE:*** *Due to GitHub's file size restrictions, the data/ directory is intentionally excluded from version control.*
 
 - **`data/raw/ & data/processed/`**: You do not need to create these folders manually. Running the generate_data.py script will automatically generate these folders and populate the `data/raw` folder  with the downloaded aeon time-series datasets and the `data/processed` folder with the 2D image representations.
 
@@ -124,6 +124,8 @@ Once your desired configuration is set, execute the master training loop across 
 ```bash
 python train_fuzzy.py
 ```
+
+***NOTE:*** *A `controller.ipynb` notebook is added containing the complete pipeline for assistance. Incase of any issues, this notebook can be run directly to generate all the data, convert it to 2D images and then train it.*
 
 
 ## 5. Results & Interpretability
